@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Anchor, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import logo from '../../logo.jpeg'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,39 +11,36 @@ export default function Header() {
     { path: '/', label: 'Home' },
     { path: '/videos', label: 'Videos' },
     { path: '/materials', label: 'Materials' },
+    { path: '/roadmap', label: 'Roadmap' },
   ]
 
   const isActive = (path) => location.pathname === path
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-ocean-deep/95 to-ocean-mid/95 backdrop-blur-xl border-b-4 border-rust shadow-2xl">
+    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-lg border-b border-amber-900/30">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-4 group">
-            <div className="w-16 h-16 bg-gradient-to-br from-rust to-anchor rounded-2xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-rust/50">
-              <Anchor className="w-8 h-8 text-white animate-float" />
-            </div>
+            <img src={logo} alt="Aaru Underway" className="w-20 h-20 rounded-lg shadow-lg shadow-red-600/30 group-hover:scale-110 transition-transform object-cover border-2 border-red-600/30" />
             <div>
-              <h1 className="font-bebas text-4xl tracking-wider text-sand drop-shadow-lg">
-                Marine Engineering Hub
+              <h1 className="text-3xl font-bold text-white group-hover:text-red-400 transition-colors">
+                Marine Hub
               </h1>
-              <p className="font-pathway text-sm text-foam tracking-widest uppercase">
-                Navigate Your Studies
-              </p>
+              <p className="text-sm text-amber-700">Engineering Education</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-2">
+          <nav className="hidden md:flex gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-6 py-3 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300 ${
+                className={`px-5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
                   isActive(link.path)
-                    ? 'bg-gradient-to-r from-rust to-anchor text-white shadow-lg shadow-rust/50 scale-105'
-                    : 'text-foam hover:bg-rust/20 hover:text-white hover:scale-105'
+                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                    : 'text-amber-200 hover:text-white hover:bg-amber-900/40'
                 }`}
               >
                 {link.label}
@@ -53,24 +51,24 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foam hover:text-rust transition-colors"
+            className="md:hidden p-2 text-amber-700 hover:text-red-400 transition-colors"
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-2 animate-fadeInUp">
+          <nav className="md:hidden mt-4 pb-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
-                className={`block px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 ${
+                className={`block px-5 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
                   isActive(link.path)
-                    ? 'bg-gradient-to-r from-rust to-anchor text-white shadow-lg'
-                    : 'text-foam hover:bg-rust/20 hover:text-white'
+                    ? 'bg-red-600 text-white'
+                    : 'text-amber-200 hover:text-white hover:bg-amber-900/40'
                 }`}
               >
                 {link.label}

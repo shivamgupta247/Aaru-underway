@@ -1,135 +1,112 @@
 import { Link } from 'react-router-dom'
-import { Video, BookOpen, Anchor, Waves, Ship, Award, ArrowRight, Sparkles } from 'lucide-react'
+import { Video, BookOpen, Anchor, Ship, Award, ArrowRight, Zap, Users, CheckCircle, Map } from 'lucide-react'
 
 export default function Home() {
   const features = [
     {
       icon: <Video className="w-12 h-12" />,
       title: 'Video Lectures',
-      description: 'Comprehensive video tutorials covering all aspects of marine engineering',
+      description: 'High-quality video tutorials from industry experts covering all marine engineering topics',
       link: '/videos',
-      gradient: 'from-blue-500 to-cyan-500',
+      color: 'from-red-600 to-red-700',
+      bgColor: 'bg-red-900/20'
     },
     {
       icon: <BookOpen className="w-12 h-12" />,
       title: 'Study Materials',
-      description: 'Curated PDFs, notes, and reference materials for your studies',
+      description: 'Comprehensive PDFs, notes, and references curated for marine students',
       link: '/materials',
-      gradient: 'from-rust to-anchor',
+      color: 'from-amber-600 to-yellow-700',
+      bgColor: 'bg-amber-900/20'
+    },
+    {
+      icon: <Map className="w-12 h-12" />,
+      title: 'Career Roadmap',
+      description: 'Navigate your merchant navy career path with detailed guidance',
+      link: '/roadmap',
+      color: 'from-orange-600 to-red-700',
+      bgColor: 'bg-orange-900/20'
     },
   ]
 
-  const stats = [
-    { icon: <Video />, value: '100+', label: 'Video Lectures' },
-    { icon: <BookOpen />, value: '50+', label: 'Study Materials' },
-    { icon: <Award />, value: '1000+', label: 'Students' },
-    { icon: <Ship />, value: '24/7', label: 'Access' },
+  const benefits = [
+    { icon: <Zap />, title: 'Industry Expert Content', desc: 'Created by experienced maritime professionals' },
+    { icon: <Users />, title: '1000+ Students', desc: 'Join thousands of aspiring marine engineers' },
+    { icon: <CheckCircle />, title: 'Comprehensive Coverage', desc: 'All major topics and exams covered' },
+    { icon: <Award />, title: 'Career Focused', desc: 'Designed to prepare you for real maritime careers' },
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-ocean-deep via-ocean-mid to-ocean-bright opacity-50"></div>
-        <Waves className="absolute top-20 right-10 w-64 h-64 text-foam/10 animate-pulse" />
-        <Ship className="absolute bottom-10 left-10 w-96 h-96 text-ocean-bright/10 animate-float" />
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-32">
-          <div className="text-center space-y-8 animate-fadeInUp">
-            <div className="inline-block">
-              <div className="flex items-center gap-3 bg-rust/20 backdrop-blur-sm px-6 py-3 rounded-full border border-rust/50 mb-6">
-                <Sparkles className="w-5 h-5 text-sand" />
-                <span className="text-sand font-semibold tracking-wide">Welcome to Marine Engineering Hub</span>
-              </div>
-            </div>
-            
-            <h1 className="font-bebas text-7xl md:text-8xl tracking-wider leading-tight">
-              <span className="block text-sand drop-shadow-2xl">Navigate Your</span>
-              <span className="block text-gradient text-8xl md:text-9xl">Future</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-foam max-w-3xl mx-auto leading-relaxed font-light">
-              Your comprehensive resource for marine engineering education. Access premium video lectures and study materials designed for aspiring marine engineers.
-            </p>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-stone-900 to-black"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-700/10 rounded-full blur-3xl"></div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <Link
-                to="/videos"
-                className="group px-10 py-5 bg-gradient-to-r from-rust to-anchor rounded-full font-bold text-lg uppercase tracking-wider shadow-2xl shadow-rust/50 hover:shadow-rust/70 transition-all duration-300 hover:scale-110 flex items-center justify-center gap-3"
-              >
-                Watch Videos
-                <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-              <Link
-                to="/materials"
-                className="group px-10 py-5 bg-ocean-bright/20 backdrop-blur-sm border-2 border-foam rounded-full font-bold text-lg uppercase tracking-wider hover:bg-foam hover:text-ocean-deep transition-all duration-300 hover:scale-110 flex items-center justify-center gap-3"
-              >
-                Study Materials
-                <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center space-y-8">
+          <div className="inline-block">
+            <span className="px-4 py-2 bg-red-600/10 border border-red-600/30 rounded-full text-red-400 text-sm font-semibold">
+              ⚓ Maritime Education Platform
+            </span>
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-ocean-mid/30 to-ocean-bright/30 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center space-y-4 p-6 rounded-2xl bg-ocean-deep/50 backdrop-blur-sm border border-foam/20 hover:border-rust transition-all duration-300 hover:scale-110 card-hover"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-rust to-anchor rounded-2xl flex items-center justify-center text-white shadow-lg shadow-rust/50">
-                  {stat.icon}
-                </div>
-                <div className="font-bebas text-5xl text-sand">{stat.value}</div>
-                <div className="text-foam font-semibold tracking-wide">{stat.label}</div>
-              </div>
-            ))}
+          <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight">
+            Master Marine Engineering at Your Own Pace
+          </h1>
+
+          <p className="text-xl text-amber-200/80 max-w-3xl mx-auto leading-relaxed">
+            Access comprehensive video lectures, study materials, and career guidance to excel in your marine engineering journey
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <Link
+              to="/videos"
+              className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group"
+            >
+              <Video className="w-5 h-5" />
+              Watch Videos
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/materials"
+              className="px-8 py-4 bg-stone-800 hover:bg-stone-700 text-white font-semibold rounded-lg border border-amber-700 transition-all duration-300 flex items-center justify-center gap-2 group"
+            >
+              <BookOpen className="w-5 h-5" />
+              Study Materials
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="font-bebas text-6xl text-sand mb-4 tracking-wider">
-              Explore Resources
-            </h2>
-            <p className="text-xl text-foam">Everything you need to excel in marine engineering</p>
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-white mb-4">What We Offer</h2>
+            <p className="text-xl text-amber-200/70">Everything you need to succeed in marine engineering</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <Link
                 key={index}
                 to={feature.link}
-                className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-ocean-mid/40 to-ocean-bright/40 backdrop-blur-sm border-2 border-foam/30 hover:border-rust transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-rust/30"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className="group relative bg-gradient-to-br from-stone-900 to-black border border-amber-900/30 rounded-xl p-8 hover:border-red-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-600/10"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-rust/0 to-anchor/0 group-hover:from-rust/20 group-hover:to-anchor/20 transition-all duration-500"></div>
-                
-                <div className="relative p-12 space-y-6">
-                  <div className={`w-24 h-24 bg-gradient-to-br ${feature.gradient} rounded-3xl flex items-center justify-center text-white shadow-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}>
+                <div className={`w-16 h-16 ${feature.bgColor} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <div className={`bg-gradient-to-br ${feature.color} text-transparent bg-clip-text`}>
                     {feature.icon}
                   </div>
-                  
-                  <h3 className="font-bebas text-4xl text-sand tracking-wide">
-                    {feature.title}
-                  </h3>
-                  
-                  <p className="text-lg text-foam leading-relaxed">
-                    {feature.description}
-                  </p>
+                </div>
 
-                  <div className="flex items-center gap-3 text-rust font-bold group-hover:gap-5 transition-all duration-300">
-                    <span className="uppercase tracking-wider">Explore Now</span>
-                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                  </div>
+                <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
+                <p className="text-amber-200/70 mb-6">{feature.description}</p>
+
+                <div className="flex items-center gap-2 text-red-400 font-semibold group-hover:gap-3 transition-all">
+                  <span>Explore</span>
+                  <ArrowRight className="w-5 h-5" />
                 </div>
               </Link>
             ))}
@@ -137,36 +114,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-24 bg-gradient-to-br from-ocean-deep/50 to-ocean-mid/50 backdrop-blur-sm">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-gradient-to-br from-ocean-bright/20 to-ocean-mid/20 backdrop-blur-xl rounded-3xl p-12 border-2 border-foam/30 shadow-2xl">
-            <div className="flex items-center gap-4 mb-8">
-              <Anchor className="w-12 h-12 text-rust" />
-              <h2 className="font-bebas text-5xl text-sand tracking-wider">About This Hub</h2>
-            </div>
-            
-            <div className="space-y-6 text-lg text-foam leading-relaxed">
-              <p>
-                Welcome to the <span className="text-sand font-semibold">Marine Engineering Hub</span>, your comprehensive resource for marine engineering education. This platform is designed specifically for students in marine colleges, providing curated video lectures and essential study materials to support your journey toward becoming a skilled marine engineer.
-              </p>
-              <p>
-                All content is regularly updated to reflect the latest industry standards, regulations, and technological advances in maritime engineering. Navigate through our organized sections to find exactly what you need for your studies.
-              </p>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <span className="px-6 py-3 bg-rust/20 border border-rust/50 rounded-full text-sand font-semibold">
-                Industry Standards
-              </span>
-              <span className="px-6 py-3 bg-rust/20 border border-rust/50 rounded-full text-sand font-semibold">
-                Latest Technology
-              </span>
-              <span className="px-6 py-3 bg-rust/20 border border-rust/50 rounded-full text-sand font-semibold">
-                Expert Curated
-              </span>
-            </div>
+      {/* Benefits Section */}
+      <section className="py-24 px-6 bg-gradient-to-b from-stone-900 to-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-white mb-4">Why Choose Us?</h2>
           </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="bg-stone-800/50 border border-amber-900/30 rounded-xl p-8 hover:bg-stone-800 transition-all duration-300">
+                <div className="text-red-500 mb-4">{benefit.icon}</div>
+                <h3 className="text-lg font-bold text-white mb-2">{benefit.title}</h3>
+                <p className="text-amber-200/70 text-sm">{benefit.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { number: '100+', label: 'Video Lectures' },
+              { number: '50+', label: 'Study Materials' },
+              { number: '1000+', label: 'Active Students' },
+              { number: '24/7', label: 'Lifetime Access' },
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-5xl font-bold text-red-500 mb-2">{stat.number}</div>
+                <p className="text-amber-200/70">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-6 bg-gradient-to-r from-red-900/20 to-amber-900/20 border-y border-amber-900/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Journey?</h2>
+          <p className="text-xl text-amber-200/80 mb-8">Join thousands of students already learning from our platform</p>
+          <Link
+            to="/videos"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300"
+          >
+            Get Started Now
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
     </div>
