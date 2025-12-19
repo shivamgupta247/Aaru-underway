@@ -258,7 +258,7 @@ export default function Videos() {
           onClick={closeVideo}
         >
           <div 
-            className="relative w-full max-w-6xl bg-ocean-deep rounded-3xl overflow-hidden border-4 border-rust shadow-2xl"
+            className="relative w-full max-w-4xl bg-ocean-deep rounded-3xl overflow-hidden border-4 border-rust shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -270,9 +270,9 @@ export default function Videos() {
             </button>
 
             {/* Video Header */}
-            <div className="bg-gradient-to-r from-ocean-mid to-ocean-bright p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="px-4 py-2 bg-rust/30 border border-rust/50 rounded-full text-sand text-xs font-semibold uppercase tracking-wide">
+            <div className="bg-gradient-to-r from-ocean-mid to-ocean-bright p-4">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="px-3 py-1 bg-rust/30 border border-rust/50 rounded-full text-sand text-xs font-semibold uppercase tracking-wide">
                   {selectedVideo.category}
                 </span>
                 <div className="flex items-center gap-2 text-foam">
@@ -280,10 +280,10 @@ export default function Videos() {
                   <span className="text-sm font-semibold">{selectedVideo.duration}</span>
                 </div>
               </div>
-              <h2 className="font-bebas text-4xl text-sand mb-2 tracking-wide">
+              <h2 className="font-bebas text-3xl text-sand mb-2 tracking-wide">
                 {selectedVideo.title}
               </h2>
-              <p className="text-foam text-lg">
+              <p className="text-foam">
                 {selectedVideo.description}
               </p>
             </div>
