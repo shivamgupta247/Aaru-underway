@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Play, Clock, Search, Filter, Tv, Youtube } from 'lucide-react'
+import { Play, Clock, Search, Filter, Tv, Youtube, X } from 'lucide-react'
 
 export default function Videos() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedVideo, setSelectedVideo] = useState(null)
 
   const categories = [
     'All',
@@ -97,8 +98,12 @@ export default function Videos() {
     return matchesSearch && matchesCategory
   })
 
-  const openVideo = (videoId) => {
-    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank')
+  const openVideo = (video) => {
+    setSelectedVideo(video)
+  }
+
+  const closeVideo = () => {
+    setSelectedVideo(null)
   }
 
   const getThumbnailGradient = (thumbnail) => {
@@ -174,7 +179,7 @@ export default function Videos() {
               key={video.id}
               className="group cursor-pointer animate-fadeInUp"
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => openVideo(video.id)}
+              onClick={() => openVideo(video)}
             >
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-ocean-mid/40 to-ocean-bright/40 backdrop-blur-sm border-2 border-foam/30 hover:border-rust transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-rust/30">
                 {/* Thumbnail */}
@@ -245,6 +250,57 @@ export default function Videos() {
           <p className="text-foam/70">More content added regularly</p>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fadeInUp p-4"
+          onClick={closeVideo}
+        >
+          <div 
+            className="relative w-full max-w-6xl bg-ocean-deep rounded-3xl overflow-hidden border-4 border-rust shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeVideo}
+              className="absolute top-4 right-4 z-10 w-12 h-12 bg-rust hover:bg-anchor rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-xl"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+
+            {/* Video Header */}
+            <div className="bg-gradient-to-r from-ocean-mid to-ocean-bright p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="px-4 py-2 bg-rust/30 border border-rust/50 rounded-full text-sand text-xs font-semibold uppercase tracking-wide">
+                  {selectedVideo.category}
+                </span>
+                <div className="flex items-center gap-2 text-foam">
+                  <Clock className="w-4 h-4" />
+                  <span className="text-sm font-semibold">{selectedVideo.duration}</span>
+                </div>
+              </div>
+              <h2 className="font-bebas text-4xl text-sand mb-2 tracking-wide">
+                {selectedVideo.title}
+              </h2>
+              <p className="text-foam text-lg">
+                {selectedVideo.description}
+              </p>
+            </div>
+
+            {/* Video Player */}
+            <div className="relative pt-[56.25%] bg-black">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1`}
+                title={selectedVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
