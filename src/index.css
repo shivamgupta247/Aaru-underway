@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pathway+Gothic+One&family=Oxygen:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-oxygen bg-ocean-deep text-white overflow-x-hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-ocean-deep;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-rust rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-anchor;
+}
+
+/* Animated background */
+@layer base {
+  body::before {
+    content: '';
+    @apply fixed top-0 left-0 w-full h-full -z-10;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(10, 147, 150, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, rgba(148, 210, 189, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(0, 95, 115, 0.4) 0%, transparent 50%);
+    animation: wave 20s ease-in-out infinite;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-rust to-anchor bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:scale-105;
+  }
+}
