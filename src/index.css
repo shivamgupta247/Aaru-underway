@@ -5,7 +5,10 @@
 @tailwind utilities;
 
 body {
-  @apply font-oxygen bg-ocean-deep text-white overflow-x-hidden;
+  font-family: 'Oxygen', sans-serif;
+  background-color: #1a0f0a;
+  color: #FFF5D2;
+  overflow-x: hidden;
 }
 
 /* Custom scrollbar */
@@ -14,26 +17,32 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-ocean-deep;
+  background-color: #1a0f0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-rust rounded-full;
+  background-color: #F25900;
+  @apply rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-anchor;
+  background-color: #D84800;
 }
 
 /* Animated background */
 @layer base {
   body::before {
     content: '';
-    @apply fixed top-0 left-0 w-full h-full -z-10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
     background: 
-      radial-gradient(ellipse at 20% 50%, rgba(10, 147, 150, 0.3) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 30%, rgba(148, 210, 189, 0.2) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, rgba(0, 95, 115, 0.4) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, rgba(242, 89, 0, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, rgba(255, 245, 210, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(242, 89, 0, 0.2) 0%, transparent 50%);
     animation: wave 20s ease-in-out infinite;
   }
 }
@@ -41,10 +50,17 @@ body {
 /* Custom utilities */
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-rust to-anchor bg-clip-text text-transparent;
+    background: linear-gradient(to right, #F25900, #D84800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:scale-105;
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.05);
   }
 }
